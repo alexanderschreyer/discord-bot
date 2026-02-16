@@ -11,6 +11,7 @@ target
 dependency-reduced-pom.xml
 
 ### Deployment ###
+depl
 depl/.env
 depl/Dockerfile
 depl/docker-compose.yml
