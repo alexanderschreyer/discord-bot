@@ -16,8 +16,7 @@ import static net.dv8tion.jda.api.interactions.commands.OptionType.BOOLEAN;
 public class Bot {
 
     public static void main(String[] args) {
-        TokenReader tokenReader = new TokenReader();
-        String token = tokenReader.readDiscordToken();
+        String token = System.getenv("DISCORD_TOKEN");
 
         EnumSet<GatewayIntent> intents = EnumSet.noneOf(GatewayIntent.class);
         JDA api = JDABuilder.createLight(token, intents)
