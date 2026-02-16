@@ -8,8 +8,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class CourseSelector {
-    private boolean allowMixed = false;
-    private boolean includeDlc = false;
+    // TODO : IMPLEMENT OPTION TO DISABLE MULTIPLE COURSES OF THE SAME MOUNTAIN PER TOUR
+    private boolean disallowMultiple = false;
 
     private final CourseRepository courseRepository;
 
@@ -17,15 +17,11 @@ public class CourseSelector {
         this.courseRepository = new CourseRepository();
     }
 
-    public void setAllowMixed(boolean allowMixed) {
-        this.allowMixed = allowMixed;
+    public void setDisallowMultiple(boolean disallowMultiple) {
+        this.disallowMultiple = disallowMultiple;
     }
 
-    public void setIncludeDlc(boolean includeDlc) {
-        this.includeDlc = includeDlc;
-    }
-
-    public List<Course> generateRandomCourseList() {
+    public List<Course> generateRandomCourseList(boolean includeDlc) {
         List<Course> courses = new ArrayList<>();
         courses.addAll(courseRepository.getTannenstein());
         courses.addAll(courseRepository.getMonteGuanaco());
