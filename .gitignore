@@ -10,6 +10,10 @@
 target
 dependency-reduced-pom.xml
 
+### Deployment ###
+.env
+Dockerfile
+docker-compose.yml
+
 ### Various ###
 config
-.env
