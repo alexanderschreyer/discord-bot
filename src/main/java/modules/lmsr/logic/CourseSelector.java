@@ -20,7 +20,7 @@ public class CourseSelector {
     private String buildCourseListString(List<Course> courseList) {
         StringBuilder sb = new StringBuilder();
 
-        String intro = String.format("Great! Here's a randomized list of tours for Lonely Mountains: Snow Riders, DLC courses " + (includeDlc? "" : "NOT ") + "included:\n\n");
+        String intro = String.format("Great! Here's a randomized list of tours for Lonely Mountains: Snow Riders, DLC courses " + (includeDlc? "included" : "excluded") + ":\n\n");
         sb.append(intro);
 
         int tourIndex = 1;
