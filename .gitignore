@@ -8,6 +8,7 @@
 
 ### Build ###
 target
+dependency-reduced-pom.xml
 
 ### Various ###
 config
