@@ -11,3 +11,4 @@ target
 
 ### Various ###
 config
+.env
