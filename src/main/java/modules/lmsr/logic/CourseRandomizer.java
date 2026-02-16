@@ -1,44 +1,36 @@
 package modules.lmsr.logic;
 
 import modules.lmsr.model.Course;
+import modules.lmsr.model.CourseRepository;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CourseRandomizer {
-    private boolean includeDlc = false;
+    // TODO : IMPLEMENT OPTION TO DISABLE MULTIPLE COURSES OF THE SAME MOUNTAIN PER TOUR
+    private boolean disallowMultiple = false;
 
-    public void setIncludeDlc(boolean includeDlc) {
-        this.includeDlc = includeDlc;
+    private final CourseRepository courseRepository;
+
+    public CourseRandomizer() {
+        this.courseRepository = new CourseRepository();
     }
 
-    public String getCoursesInRandomOrder() {
-        CourseSelector courseSelector = new CourseSelector();
-        List<Course> courseList = courseSelector.generateRandomCourseList(this.includeDlc);
-        return buildCourseListString(courseList);
+    public void setDisallowMultiple(boolean disallowMultiple) {
+        this.disallowMultiple = disallowMultiple;
     }
 
-    private String buildCourseListString(List<Course> courseList) {
-        StringBuilder sb = new StringBuilder();
-
-        String intro = String.format("Great! Here's a randomized list of tours for Lonely Mountains: Snow Riders, DLC courses " + (includeDlc? "" : "NOT ") + "included:\n\n");
-        sb.append(intro);
-
-        int tourIndex = 1;
-        int courseIndex = 0;
-
-        for(Course course : courseList) {
-            if (courseIndex == 0) {
-                sb.append("**Tour ").append(tourIndex).append("**\n");
-                tourIndex++;
-            }
-            courseIndex++;
-            sb.append(courseIndex).append(": ").append(course.getCourseName()).append(" [").append(course.getMountainName()).append("] \n");
-            if (courseIndex % 4 == 0) {
-                sb.append("\n");
-                courseIndex = 0;
-            }
+    public List<Course> generateRandomCourseList(boolean includeDlc) {
+        List<Course> courses = new ArrayList<>();
+        courses.addAll(courseRepository.getTannenstein());
+        courses.addAll(courseRepository.getMonteGuanaco());
+        courses.addAll(courseRepository.getSierraGelida());
+        courses.addAll(courseRepository.getBaifushan());
+        if (includeDlc) {
+            courses.addAll(courseRepository.getBenFiadhein());
         }
-
-        return sb.toString();
+        Collections.shuffle(courses);
+        return courses;
     }
 }
